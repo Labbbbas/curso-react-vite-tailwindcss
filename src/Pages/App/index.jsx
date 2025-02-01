@@ -16,7 +16,7 @@ const AppRoutes = () => {
     { path: '/my-orders', element: <MyOrders /> },
     { path: '/sign-in', element: <SignIn /> },
     { path: '*', element: <NotFound /> },
-  ])  
+  ])
 
   return routes
 }
@@ -24,12 +24,10 @@ const AppRoutes = () => {
 const App = () => {
 
   return (
-    <>
-      <BrowserRouter>
-        <AppRoutes /> 
-        <Navbar />
-      </BrowserRouter>
-    </>
+    <BrowserRouter>
+      <AppRoutes />
+      <Navbar />
+    </BrowserRouter>
   )
 }
 

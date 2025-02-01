@@ -1,11 +1,11 @@
-function MyOrder() {
+import Layout from "../../Components/Layout";
+
+const MyOrder = () => {
     
     return (
-        <>
-            <div className="bg-red-100">
-                MyOrder
-            </div>
-        </>
+        <Layout>
+            My Order
+        </Layout>
     );
 }
 
