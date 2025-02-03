@@ -26,7 +26,7 @@ const Card = ({ data }) => {
                     className="absolute top-0 right-0 flex justify-center items-center rounded-full m-1.5 cursor-pointer transition-all duration-500 ease-in-out hover:rotate-180"
                     onClick={() => (setCounter(counter + 1))}
                 >
-                    <FaCirclePlus className="text-white text-xl hover:text-gray-300" />
+                    <FaCirclePlus className="text-white text-xl hover:text-gray-200" />
                 </button>
 
             </figure>
