@@ -1,4 +1,4 @@
-import Layout from "../../Components/Layout";
+import { Layout } from "../../Components/Layout";
 
 const MyOrder = () => {
     
@@ -9,4 +9,4 @@ const MyOrder = () => {
     );
 }
 
-export default MyOrder;
+export { MyOrder }

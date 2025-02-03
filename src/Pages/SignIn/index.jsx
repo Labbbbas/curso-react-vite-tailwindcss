@@ -1,4 +1,4 @@
-import Layout from "../../Components/Layout";
+import { Layout } from "../../Components/Layout";
 
 const SignIn = () => {
     
@@ -9,4 +9,4 @@ const SignIn = () => {
     );
 }
 
-export default SignIn;
+export { SignIn }

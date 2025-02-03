@@ -1,4 +1,4 @@
-import Layout from "../../Components/Layout";
+import { Layout } from "../../Components/Layout";
 
 const MyAccount = () => {
     
@@ -9,4 +9,4 @@ const MyAccount = () => {
     );
 }
 
-export default MyAccount;
+export { MyAccount }

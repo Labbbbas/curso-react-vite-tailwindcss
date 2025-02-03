@@ -1,4 +1,4 @@
-import Layout from "../../Components/Layout";
+import { Layout } from "../../Components/Layout";
 
 const NotFound = () => {
     
@@ -9,4 +9,4 @@ const NotFound = () => {
     );
 }
 
-export default NotFound;
+export { NotFound }

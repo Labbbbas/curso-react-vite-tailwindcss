@@ -1,7 +1,7 @@
 // useEffect siempre nos ayuda al consumir una API
 import { useState, useEffect } from "react";
-import Layout from "../../Components/Layout";
-import Card from '../../Components/Card'
+import { Layout } from "../../Components/Layout";
+import { Card } from '../../Components/Card'
 
 const Home = () => {
 
@@ -27,4 +27,4 @@ const Home = () => {
     );
 }
 
-export default Home;
+export { Home }
