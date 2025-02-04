@@ -10,13 +10,19 @@ const Card = ({ data }) => {
     } = useContext(ShoppingCartContext)
 
     const {
-        openProductDetail
+        openProductDetail,
+        setProductToShow
     } = useContext(ProductDetailContext)
+
+    const ShowProduct = (productDetail) => {
+        openProductDetail()
+        setProductToShow(productDetail)
+    }
 
     return (
         <div 
             className='bg-white cursor-pointer w-56 h-60 rounded-lg shadow-md p-2 hover:shadow-xl transition-all duration-250'
-            onClick={() => openProductDetail()
+            onClick={() => ShowProduct(data)
             }
         >
             <figure className='relative mb-3 w-full h-4/5'>

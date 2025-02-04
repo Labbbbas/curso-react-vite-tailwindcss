@@ -16,7 +16,6 @@ const ShoppingCartProvider = ({ children }) => {
     )
 }
 
-
 const ProductDetailContext = createContext()
 
 const ProductDetailProvider =({ children }) => {
@@ -26,12 +25,16 @@ const ProductDetailProvider =({ children }) => {
     const openProductDetail = () => setIsProductDetailOpen(true)
     const closeProductDetail = () => setIsProductDetailOpen(false)
     
+    const [productToShow, setProductToShow] = useState({}) // El estado inicial es un objeto porque la data del producto así viene
+
     return (
         <ProductDetailContext.Provider value={{
             isProductDetailOpen,
             setIsProductDetailOpen,
             openProductDetail,
-            closeProductDetail
+            closeProductDetail,
+            productToShow,
+            setProductToShow
         }}>
             { children }
         </ProductDetailContext.Provider>
