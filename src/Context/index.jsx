@@ -16,4 +16,26 @@ const ShoppingCartProvider = ({ children }) => {
     )
 }
 
-export { ShoppingCartProvider, ShoppingCartContext };
+
+const ProductDetailContext = createContext()
+
+const ProductDetailProvider =({ children }) => {
+
+    const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
+
+    const openProductDetail = () => setIsProductDetailOpen(true)
+    const closeProductDetail = () => setIsProductDetailOpen(false)
+    
+    return (
+        <ProductDetailContext.Provider value={{
+            isProductDetailOpen,
+            setIsProductDetailOpen,
+            openProductDetail,
+            closeProductDetail
+        }}>
+            { children }
+        </ProductDetailContext.Provider>
+    )
+}
+
+export { ShoppingCartProvider, ShoppingCartContext, ProductDetailProvider, ProductDetailContext };

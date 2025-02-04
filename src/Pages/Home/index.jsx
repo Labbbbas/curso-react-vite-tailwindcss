@@ -1,10 +1,15 @@
 // useEffect siempre nos ayuda al consumir una API
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Layout } from "../../Components/Layout";
 import { Card } from '../../Components/Card'
 import { ProductDetail } from "../../Components/ProductDetail";
+import { ProductDetailContext } from "../../Context";
 
 const Home = () => {
+
+    const {
+        isProductDetailOpen
+    } = useContext(ProductDetailContext)
 
     const [items, setItems] = useState(null);
 
@@ -24,7 +29,7 @@ const Home = () => {
                     ))
                 }
             </div>
-            <ProductDetail />
+            {isProductDetailOpen && <ProductDetail /> }
         </Layout>
     );
 }
