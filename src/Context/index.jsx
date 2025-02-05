@@ -4,12 +4,19 @@ const ShoppingCartContext = createContext()
 
 const ShoppingCartProvider = ({ children }) => {
 
+    // Estado para contabilizar los productos dentro del carrito
     const [counter, setCounter] = useState(0)
 
+    // Estado para agregar productos al carrito
+    const [cartProducts, setCartProducts] = useState([])
+    console.log('Cart: ', cartProducts)
+    
     return (
         <ShoppingCartContext.Provider value={{
             counter,
-            setCounter
+            setCounter,
+            cartProducts,
+            setCartProducts
         }}>
             {children}
         </ShoppingCartContext.Provider>
@@ -20,11 +27,14 @@ const ProductDetailContext = createContext()
 
 const ProductDetailProvider =({ children }) => {
 
+    // Estado para saber si el Product Detail está abierto o cerrado
     const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
 
+    // Para abrir y cerrar el Product Detail
     const openProductDetail = () => setIsProductDetailOpen(true)
     const closeProductDetail = () => setIsProductDetailOpen(false)
     
+    // Estado para guardar el producto que se quiere mostrar en el Product Detail
     const [productToShow, setProductToShow] = useState({}) // El estado inicial es un objeto porque la data del producto así viene
 
     return (
