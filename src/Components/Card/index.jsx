@@ -1,9 +1,10 @@
 import { FaCirclePlus } from "react-icons/fa6";
 import { useContext } from "react";
-import { ShoppingCartContext, ProductDetailContext } from "../../Context";
+import { ShoppingCartContext, ProductDetailContext, CheckoutSideMenuContext } from "../../Context";
 
 const Card = ({ data }) => {
 
+    // Contexto Carrito
     const {
         counter,
         setCounter,
@@ -11,19 +12,31 @@ const Card = ({ data }) => {
         cartProducts
     } = useContext(ShoppingCartContext)
 
+    // Contexto Detalles del Producto
     const {
         openProductDetail,
+        closeProductDetail,
         setProductToShow,
     } = useContext(ProductDetailContext)
+
+    // Contexto checkout (pago)
+    const {
+        openCheckoutSideMenu,
+        closeCheckoutSideMenu
+    } = useContext(CheckoutSideMenuContext)
 
     const ShowProduct = (productDetail) => {
         openProductDetail()
         setProductToShow(productDetail)
+        closeCheckoutSideMenu()
     }
 
-    const addProductToCart = (productToAdd) => {
+    const addProductToCart = (e, productToAdd) => {
+        e.stopPropagation() // Para que no abra el Product Detail cuando demos click en +
         setCartProducts([...cartProducts, productToAdd])
         setCounter(counter + 1)
+        openCheckoutSideMenu()
+        closeProductDetail()
     }
 
     return (
@@ -46,8 +59,7 @@ const Card = ({ data }) => {
                 <button
                     className="absolute top-0 right-0 flex justify-center items-center rounded-full m-1.5 cursor-pointer transition-all duration-500 ease-in-out hover:rotate-180"
                     onClick={(e) => {
-                        e.stopPropagation() // Para que no abra el Product Detail cuando demos click en +
-                        addProductToCart(data)
+                        addProductToCart(e, data)
                     }}
                 >
                     <FaCirclePlus

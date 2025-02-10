@@ -9,8 +9,6 @@ const ProductDetail = () => {
         productToShow
     } = useContext(ProductDetailContext)
 
-    console.log(productToShow);
-
     return (
         <aside
             // La primera es otra forma de hacerlo

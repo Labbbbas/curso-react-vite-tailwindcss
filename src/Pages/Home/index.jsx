@@ -3,13 +3,18 @@ import { useState, useEffect, useContext } from "react";
 import { Layout } from "../../Components/Layout";
 import { Card } from '../../Components/Card'
 import { ProductDetail } from "../../Components/ProductDetail";
-import { ProductDetailContext } from "../../Context";
+import { ProductDetailContext, CheckoutSideMenuContext } from "../../Context";
+import { CheckoutSideMenu } from "../../Components/CheckoutSideMenu";
 
 const Home = () => {
 
     const {
         isProductDetailOpen
     } = useContext(ProductDetailContext)
+
+    const {
+        isCheckoutSideMenuOpen
+    } = useContext(CheckoutSideMenuContext)
 
     const [items, setItems] = useState(null);
 
@@ -30,6 +35,7 @@ const Home = () => {
                 }
             </div>
             {isProductDetailOpen && <ProductDetail /> }
+            {isCheckoutSideMenuOpen && <CheckoutSideMenu /> }
         </Layout>
     );
 }

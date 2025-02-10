@@ -10,7 +10,7 @@ const ShoppingCartProvider = ({ children }) => {
     // Estado para agregar productos al carrito
     const [cartProducts, setCartProducts] = useState([])
     console.log('Cart: ', cartProducts)
-    
+
     return (
         <ShoppingCartContext.Provider value={{
             counter,
@@ -51,4 +51,35 @@ const ProductDetailProvider =({ children }) => {
     )
 }
 
-export { ShoppingCartProvider, ShoppingCartContext, ProductDetailProvider, ProductDetailContext };
+
+const CheckoutSideMenuContext = createContext()
+
+const CheckoutSideMenuProvider = ({ children }) => {
+
+    // Estado para saber si está abierto
+    const [isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen] = useState(false)
+
+    // Para abrir y cerrar el Checkout Side Menu
+    const openCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(true)
+    const closeCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(false)
+
+    return (
+        <CheckoutSideMenuContext.Provider value={{
+            isCheckoutSideMenuOpen,
+            setIsCheckoutSideMenuOpen,
+            openCheckoutSideMenu,
+            closeCheckoutSideMenu
+        }}>
+            { children }
+        </CheckoutSideMenuContext.Provider>
+    )
+}
+
+export { 
+    ShoppingCartProvider, 
+    ShoppingCartContext, 
+    ProductDetailProvider, 
+    ProductDetailContext,
+    CheckoutSideMenuProvider,
+    CheckoutSideMenuContext
+};
