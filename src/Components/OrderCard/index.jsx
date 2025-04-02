@@ -1,6 +1,6 @@
 import { RiCloseLargeFill } from "react-icons/ri";
 
-const OrderCart = (props) => {
+const OrderCard = (props) => {
 
     const {
         id, title, image, price
@@ -24,4 +24,4 @@ const OrderCart = (props) => {
     )
 }
 
-export { OrderCart }
+export { OrderCard }

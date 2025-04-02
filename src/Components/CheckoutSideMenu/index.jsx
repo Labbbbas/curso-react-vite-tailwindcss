@@ -1,7 +1,7 @@
 import { RiCloseLargeFill } from "react-icons/ri";
 import { useContext } from "react";
 import { CheckoutSideMenuContext, ShoppingCartContext } from "../../Context";
-import { OrderCart } from "../OrderCart";
+import { OrderCard } from "../OrderCard";
 
 const CheckoutSideMenu = () => {
 
@@ -29,7 +29,7 @@ const CheckoutSideMenu = () => {
 
             <div className='px-6'>
                 {cartProducts.map((product) => (
-                    <OrderCart
+                    <OrderCard
                         key={product.id}
                         title={product.title}
                         image={product.images}
