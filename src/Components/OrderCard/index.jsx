@@ -1,4 +1,4 @@
-import { RiCloseLargeFill } from "react-icons/ri";
+import { MdDeleteOutline } from "react-icons/md";
 
 const OrderCard = (props) => {
 
@@ -17,9 +17,9 @@ const OrderCard = (props) => {
 
             <div className='flex items-center gap-2'>
                 <p className='text-lg font-medium'>${price}</p>
-                <RiCloseLargeFill 
+                <MdDeleteOutline 
                     onClick={() => handleDelete(id)}
-                    className='text-lg cursor-pointer transition-all duration-500 ease-in-out hover:rotate-180' />
+                    className='text-lg cursor-pointer size-5' />
             </div>
         </div>
 

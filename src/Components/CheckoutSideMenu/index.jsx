@@ -2,6 +2,7 @@ import { RiCloseLargeFill } from "react-icons/ri";
 import { useContext } from "react";
 import { CheckoutSideMenuContext, ShoppingCartContext } from "../../Context";
 import { OrderCard } from "../OrderCard";
+import { totalPrice } from "../../utils";
 
 const CheckoutSideMenu = () => {
 
@@ -19,7 +20,7 @@ const CheckoutSideMenu = () => {
     const handleDelete = (id) => {
         const newCart = cartProducts.filter(product => product.id !== id)
         setCartProducts(newCart)
-        setCounter(counter - 1)  
+        setCounter(counter - 1)
     }
 
     return (
@@ -47,6 +48,13 @@ const CheckoutSideMenu = () => {
                         handleDelete={handleDelete}
                     />
                 ))}
+            </div>
+
+            <div className="px-6">
+                <p className="flex justify-between items-center">
+                    <span className="font-medium">Total:</span>
+                    <span className="font-semibold text-xl">${totalPrice(cartProducts)}</span>
+                </p>
             </div>
 
         </aside >
