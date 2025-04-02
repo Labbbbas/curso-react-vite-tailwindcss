@@ -10,8 +10,17 @@ const CheckoutSideMenu = () => {
     } = useContext(CheckoutSideMenuContext)
 
     const {
-        cartProducts
+        cartProducts,
+        setCartProducts,
+        counter,
+        setCounter
     } = useContext(ShoppingCartContext)
+
+    const handleDelete = (id) => {
+        const newCart = cartProducts.filter(product => product.id !== id)
+        setCartProducts(newCart)
+        setCounter(counter - 1)  
+    }
 
     return (
         <aside
@@ -31,9 +40,11 @@ const CheckoutSideMenu = () => {
                 {cartProducts.map((product) => (
                     <OrderCard
                         key={product.id}
+                        id={product.id}
                         title={product.title}
                         image={product.images}
                         price={product.price}
+                        handleDelete={handleDelete}
                     />
                 ))}
             </div>

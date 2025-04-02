@@ -3,7 +3,7 @@ import { RiCloseLargeFill } from "react-icons/ri";
 const OrderCard = (props) => {
 
     const {
-        id, title, image, price
+        id, title, image, price, handleDelete
     } = props
 
     return (
@@ -17,7 +17,9 @@ const OrderCard = (props) => {
 
             <div className='flex items-center gap-2'>
                 <p className='text-lg font-medium'>${price}</p>
-                <RiCloseLargeFill className='text-lg cursor-pointer transition-all duration-500 ease-in-out hover:rotate-180' />
+                <RiCloseLargeFill 
+                    onClick={() => handleDelete(id)}
+                    className='text-lg cursor-pointer transition-all duration-500 ease-in-out hover:rotate-180' />
             </div>
         </div>
 
