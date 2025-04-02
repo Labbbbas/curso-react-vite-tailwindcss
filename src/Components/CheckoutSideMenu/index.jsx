@@ -8,6 +8,8 @@ const CheckoutSideMenu = () => {
 
     const {
         closeCheckoutSideMenu,
+        order,
+        setOrder
     } = useContext(CheckoutSideMenuContext)
 
     const {
@@ -21,6 +23,20 @@ const CheckoutSideMenu = () => {
         const newCart = cartProducts.filter(product => product.id !== id)
         setCartProducts(newCart)
         setCounter(counter - 1)
+    }
+
+    const handleCheckout = () => {
+        // Creamos un objeto con la orden
+        const orderToAdd = {
+            date: new Date(),
+            products: cartProducts,
+            totalProducts: cartProducts.length,
+            totalPrice: totalPrice(cartProducts)
+        }
+
+        setOrder([...order, orderToAdd]) // Agregamos la orden al estado
+        setCounter(0) // Reiniciamos el contador
+        setCartProducts([]) // Limpiamos el carrito
     }
 
     return (
@@ -37,7 +53,8 @@ const CheckoutSideMenu = () => {
                 </div>
             </div>
 
-            <div className='px-6'>
+            {/* La lista de productos */}
+            <div className='px-6 flex-1'>
                 {cartProducts.map((product) => (
                     <OrderCard
                         key={product.id}
@@ -50,11 +67,18 @@ const CheckoutSideMenu = () => {
                 ))}
             </div>
 
-            <div className="px-6">
-                <p className="flex justify-between items-center">
+            <div className="px-6 mb-6">
+                <p className="flex justify-between items-center mb-3">
                     <span className="font-medium">Total:</span>
                     <span className="font-semibold text-xl">${totalPrice(cartProducts)}</span>
                 </p>
+
+                <button
+                    className="bg-black text-white w-full py-3 rounded-lg cursor-pointer"
+                    onClick={() => handleCheckout()}
+                >
+                    Checkout
+                </button>
             </div>
 
         </aside >

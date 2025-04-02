@@ -9,7 +9,6 @@ const ShoppingCartProvider = ({ children }) => {
 
     // Estado para agregar productos al carrito
     const [cartProducts, setCartProducts] = useState([])
-    console.log('Cart: ', cartProducts)
 
     return (
         <ShoppingCartContext.Provider value={{
@@ -25,7 +24,7 @@ const ShoppingCartProvider = ({ children }) => {
 
 const ProductDetailContext = createContext()
 
-const ProductDetailProvider =({ children }) => {
+const ProductDetailProvider = ({ children }) => {
 
     // Estado para saber si el Product Detail está abierto o cerrado
     const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
@@ -33,7 +32,7 @@ const ProductDetailProvider =({ children }) => {
     // Para abrir y cerrar el Product Detail
     const openProductDetail = () => setIsProductDetailOpen(true)
     const closeProductDetail = () => setIsProductDetailOpen(false)
-    
+
     // Estado para guardar el producto que se quiere mostrar en el Product Detail
     const [productToShow, setProductToShow] = useState({}) // El estado inicial es un objeto porque la data del producto así viene
 
@@ -46,7 +45,7 @@ const ProductDetailProvider =({ children }) => {
             productToShow,
             setProductToShow
         }}>
-            { children }
+            {children}
         </ProductDetailContext.Provider>
     )
 }
@@ -63,22 +62,27 @@ const CheckoutSideMenuProvider = ({ children }) => {
     const openCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(true)
     const closeCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(false)
 
+    // Estado para guardar el pedido al dar clic en Checkout
+    const [order, setOrder] = useState([])
+
     return (
         <CheckoutSideMenuContext.Provider value={{
             isCheckoutSideMenuOpen,
             setIsCheckoutSideMenuOpen,
             openCheckoutSideMenu,
-            closeCheckoutSideMenu
+            closeCheckoutSideMenu,
+            order,
+            setOrder
         }}>
-            { children }
+            {children}
         </CheckoutSideMenuContext.Provider>
     )
 }
 
-export { 
-    ShoppingCartProvider, 
-    ShoppingCartContext, 
-    ProductDetailProvider, 
+export {
+    ShoppingCartProvider,
+    ShoppingCartContext,
+    ProductDetailProvider,
     ProductDetailContext,
     CheckoutSideMenuProvider,
     CheckoutSideMenuContext
