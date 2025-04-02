@@ -2,12 +2,17 @@ import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { ShoppingCartContext } from "../../Context";
 import { CiShoppingCart } from "react-icons/ci";
+import { CheckoutSideMenuContext } from "../../Context";
 
 const Navbar = () => {
 
     const {
         counter
     } = useContext(ShoppingCartContext)
+
+    const {
+        toggleCheckoutSideMenu
+    } = useContext(CheckoutSideMenuContext)
 
     const activeItem = ({ isActive }) =>
         isActive ? 'underline underline-offset-4' : undefined
@@ -98,8 +103,11 @@ const Navbar = () => {
                         Sign In
                     </NavLink>
                 </li>
-                <li className='flex gap-0.5 items-center justify-center'>
-                    <CiShoppingCart className='text-xl'/> 
+                <li className='flex gap-0.5 items-center justify-center cursor-pointer'>
+                    <CiShoppingCart 
+                        className='text-xl'
+                        onClick={() => toggleCheckoutSideMenu()}    
+                    /> 
                     <div>{counter}</div>
                 </li>
             </ul>

@@ -62,6 +62,9 @@ const CheckoutSideMenuProvider = ({ children }) => {
     const openCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(true)
     const closeCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(false)
 
+    // Toggle para abrir y cerrar el carrito
+    const toggleCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(!isCheckoutSideMenuOpen)
+
     // Estado para guardar el pedido al dar clic en Checkout
     const [order, setOrder] = useState([])
 
@@ -71,6 +74,7 @@ const CheckoutSideMenuProvider = ({ children }) => {
             setIsCheckoutSideMenuOpen,
             openCheckoutSideMenu,
             closeCheckoutSideMenu,
+            toggleCheckoutSideMenu,
             order,
             setOrder
         }}>
