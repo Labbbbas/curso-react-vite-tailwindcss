@@ -1,4 +1,5 @@
 import { FaCirclePlus } from "react-icons/fa6";
+import { FaRegCheckCircle } from "react-icons/fa";
 import { useContext } from "react";
 import { ShoppingCartContext, ProductDetailContext, CheckoutSideMenuContext } from "../../Context";
 
@@ -39,6 +40,36 @@ const Card = ({ data }) => {
         closeProductDetail()
     }
 
+    const renderIcon = (data) => {
+        const isInCart = cartProducts.filter(product => product.id === data.id).length > 0 // Devuelve true o false
+
+        if (isInCart) {
+            return (
+                <button
+                    className="absolute top-0 right-0 flex justify-center items-center rounded-full m-1.5"
+                >
+                    <FaRegCheckCircle
+                        className="text-white text-xl hover:text-gray-200"
+                    />
+                </button>
+            )
+        }
+        else {
+            return (
+                <button
+                    className="absolute top-0 right-0 flex justify-center items-center rounded-full m-1.5 cursor-pointer transition-all duration-500 ease-in-out hover:rotate-180"
+                    onClick={(e) => {
+                        addProductToCart(e, data)
+                    }}
+                >
+                    <FaCirclePlus
+                        className="text-white text-xl hover:text-gray-200"
+                    />
+                </button>
+            )
+        }
+    }
+
     return (
         <div
             className='bg-white cursor-pointer w-56 h-60 rounded-lg shadow-md p-2 hover:shadow-xl transition-all duration-250'
@@ -56,16 +87,8 @@ const Card = ({ data }) => {
                     src={data.images}
                     alt={data.title}
                 />
-                <button
-                    className="absolute top-0 right-0 flex justify-center items-center rounded-full m-1.5 cursor-pointer transition-all duration-500 ease-in-out hover:rotate-180"
-                    onClick={(e) => {
-                        addProductToCart(e, data)
-                    }}
-                >
-                    <FaCirclePlus
-                        className="text-white text-xl hover:text-gray-200"
-                    />
-                </button>
+
+                {renderIcon(data)}
 
             </figure>
             <p className='flex justify-between'>
