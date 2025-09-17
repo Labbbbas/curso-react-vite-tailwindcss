@@ -11,6 +11,14 @@ const MyOrder = () => {
         order
     } = useContext(CheckoutSideMenuContext)
 
+    const currentPath = window.location.pathname
+    let index = currentPath.substring(currentPath.lastIndexOf('/') + 1)
+    console.log(index);
+
+    if (index === 'last') {
+        index = order?.length - 1
+    }
+
     return (
         <Layout>
             <div className='flex gap-6'>
@@ -23,7 +31,7 @@ const MyOrder = () => {
 
             {/* La lista de mi orden */}
             <div className='flex flex-col w-80 mt-6'>
-                {order?.slice(-1)[0].products.map((product) => (
+                {order?.[index]?.products.map((product) => (
                     <OrderCard
                         key={product.id}
                         id={product.id}
