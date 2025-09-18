@@ -2,7 +2,7 @@ import { Layout } from "../../Components/Layout";
 import { useContext } from "react";
 import { CheckoutSideMenuContext } from "../../Context";
 import { OrderCard } from "../../Components/OrderCard";
-import { IoChevronBackCircleOutline } from "react-icons/io5";   
+import { BsChevronLeft } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
 const MyOrder = () => {
@@ -21,9 +21,9 @@ const MyOrder = () => {
 
     return (
         <Layout>
-            <div className='flex gap-6'>
+            <div className='flex gap-6 items-center'>
                 <Link to={'/my-orders'}>
-                    <IoChevronBackCircleOutline className='h-6 w-6 text-black cursor-pointer' />
+                    <BsChevronLeft className='h-5 w-5 text-black cursor-pointer' />
 
                 </Link>
                 <h1>My Order</h1>

@@ -9,7 +9,7 @@ const MyOrders = () => {
     
     return (
         <Layout>
-            My Orders
+            <p className='mb-6 font-medium'>My Orders</p>
             {
                 context.order.map((order, index) => (
 
@@ -17,6 +17,7 @@ const MyOrders = () => {
                         <OrdersCard
                             totalPrice={order.totalPrice}
                             totalProducts={order.totalProducts}
+                            date={order.date}
                         />
                     </Link>
 
