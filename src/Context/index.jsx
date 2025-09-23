@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 const ShoppingCartContext = createContext()
 
@@ -10,12 +10,29 @@ const ShoppingCartProvider = ({ children }) => {
     // Estado para agregar productos al carrito
     const [cartProducts, setCartProducts] = useState([])
 
+    // Get products
+    const [items, setItems] = useState(null)
+
+    useEffect(() => {
+        fetch('https://api.escuelajs.co/api/v1/products')
+            .then(response => response.json())
+            .then(data => setItems(data))
+    }, [])
+
+    const [searchByTitle, setSearchByTitle] = useState(null)
+    console.log(searchByTitle);
+    
+
     return (
         <ShoppingCartContext.Provider value={{
             counter,
             setCounter,
             cartProducts,
-            setCartProducts
+            setCartProducts,
+            items,
+            setItems,
+            searchByTitle,
+            setSearchByTitle
         }}>
             {children}
         </ShoppingCartContext.Provider>

@@ -1,9 +1,9 @@
 // useEffect siempre nos ayuda al consumir una API
-import { useState, useEffect, useContext } from "react";
+import { useContext } from "react";
 import { Layout } from "../../Components/Layout";
 import { Card } from '../../Components/Card'
 import { ProductDetail } from "../../Components/ProductDetail";
-import { ProductDetailContext, CheckoutSideMenuContext } from "../../Context";
+import { ProductDetailContext, CheckoutSideMenuContext, ShoppingCartContext } from "../../Context";
 import { CheckoutSideMenu } from "../../Components/CheckoutSideMenu";
 
 const Home = () => {
@@ -16,17 +16,22 @@ const Home = () => {
         isCheckoutSideMenuOpen
     } = useContext(CheckoutSideMenuContext)
 
-    const [items, setItems] = useState(null);
-
-    useEffect(() => {
-        fetch('https://api.escuelajs.co/api/v1/products')
-            .then(response => response.json())
-            .then(data => setItems(data))
-    }, [])
+    const {
+        items,
+        setSearchByTitle
+    } = useContext(ShoppingCartContext)
 
     return (
         <Layout>
-            Home
+            <p className='mb-6 font-medium'>Exclusive Products</p>
+
+            <input 
+                type='text' 
+                placeholder='Search a product' 
+                className='border rounded-2xl text-center p-1 mb-6 focus:outline-none w-80'
+                onChange={(e) => setSearchByTitle(e.target.value)}
+            />
+
             <div className='grid gap-4 grid-cols-4 w-full max-w-screen-lg mb-10'>
                 {
                     items?.map((item) => (
@@ -34,8 +39,8 @@ const Home = () => {
                     ))
                 }
             </div>
-            {isProductDetailOpen && <ProductDetail /> }
-            {isCheckoutSideMenuOpen && <CheckoutSideMenu /> }
+            {isProductDetailOpen && <ProductDetail />}
+            {isCheckoutSideMenuOpen && <CheckoutSideMenu />}
         </Layout>
     );
 }
