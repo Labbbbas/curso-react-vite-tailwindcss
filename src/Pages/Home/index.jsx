@@ -5,6 +5,7 @@ import { Card } from '../../Components/Card'
 import { ProductDetail } from "../../Components/ProductDetail";
 import { ProductDetailContext, CheckoutSideMenuContext, ShoppingCartContext } from "../../Context";
 import { CheckoutSideMenu } from "../../Components/CheckoutSideMenu";
+import { PiSmileySadThin } from "react-icons/pi";
 
 const Home = () => {
 
@@ -65,11 +66,10 @@ const Home = () => {
         }
         else {
             return (
-                <div className='flex justify-center col-span-4 h-100 items-center'>
-                    <p className='text-xl text-gray-600'>We couldn't find the product :(</p>
-
+                <div className='flex flex-col justify-center col-span-4 h-90 items-center'>
+                    <PiSmileySadThin className='size-10 mb-6'/>
+                    <p className='text-xl text-gray-600'>We couldn't find the product</p>
                 </div>
-
             )
         }
     }
