@@ -19,9 +19,21 @@ const ShoppingCartProvider = ({ children }) => {
             .then(data => setItems(data))
     }, [])
 
+    // Para guardar el input de la búsqueda
     const [searchByTitle, setSearchByTitle] = useState(null)
-    console.log(searchByTitle);
     
+    //
+    const [filteredItems, setFilteredItems] = useState(null)
+
+    const filteredItemsByTitle = (items, searchByTitle) => {
+        return items?.filter(item => item.title.toLowerCase().includes(searchByTitle.toLowerCase()))
+    }
+
+    useEffect(() => {
+        if (searchByTitle) {
+           setFilteredItems(filteredItemsByTitle(items, searchByTitle)) 
+        }
+    }, [items, searchByTitle])    
 
     return (
         <ShoppingCartContext.Provider value={{
@@ -32,7 +44,8 @@ const ShoppingCartProvider = ({ children }) => {
             items,
             setItems,
             searchByTitle,
-            setSearchByTitle
+            setSearchByTitle,
+            filteredItems
         }}>
             {children}
         </ShoppingCartContext.Provider>
@@ -66,7 +79,6 @@ const ProductDetailProvider = ({ children }) => {
         </ProductDetailContext.Provider>
     )
 }
-
 
 const CheckoutSideMenuContext = createContext()
 

@@ -18,26 +18,75 @@ const Home = () => {
 
     const {
         items,
-        setSearchByTitle
+        setSearchByTitle,
+        searchByTitle,
+        filteredItems
     } = useContext(ShoppingCartContext)
+
+    // Versión larga y no optimizada
+    // const renderView = () => {
+    //     // Si hay búsqueda
+    //     if (searchByTitle?.length > 0) {
+    //         // Y si encontramos algo 
+    //         if (filteredItems?.length > 0) {
+    //             return (
+    //                 filteredItems?.map((item) => (
+    //                     <Card key={item.id} data={item} />
+    //                 ))
+    //             )
+    //         }
+    //         // Y si no encontramos algo
+    //         else {
+    //             return (
+    //                 <div>We couldn't find the product :(</div>
+    //             )
+    //         }
+    //     }
+    //     // Si no hay búsqueda
+    //     else {
+    //         return (
+    //             items?.map((item) => (
+    //                 <Card key={item.id} data={item} />
+    //             ))
+    //         )
+    //     }
+    // }
+
+    // Versión optimizada
+    const renderView = () => {
+        const itemsToRender = searchByTitle?.length > 0 ? filteredItems : items
+
+        if (itemsToRender?.length > 0) {
+            return (
+                itemsToRender?.map((item) => (
+                    <Card key={item.id} data={item} />
+                ))
+            )
+        }
+        else {
+            return (
+                <div className='flex justify-center col-span-4 h-100 items-center'>
+                    <p className='text-xl text-gray-600'>We couldn't find the product :(</p>
+
+                </div>
+
+            )
+        }
+    }
 
     return (
         <Layout>
             <p className='mb-6 font-medium'>Exclusive Products</p>
 
-            <input 
-                type='text' 
-                placeholder='Search a product' 
+            <input
+                type='text'
+                placeholder='Search a product'
                 className='border rounded-2xl text-center p-1 mb-6 focus:outline-none w-80'
                 onChange={(e) => setSearchByTitle(e.target.value)}
             />
 
             <div className='grid gap-4 grid-cols-4 w-full max-w-screen-lg mb-10'>
-                {
-                    items?.map((item) => (
-                        <Card key={item.id} data={item} />
-                    ))
-                }
+                {renderView()}
             </div>
             {isProductDetailOpen && <ProductDetail />}
             {isCheckoutSideMenuOpen && <CheckoutSideMenu />}
