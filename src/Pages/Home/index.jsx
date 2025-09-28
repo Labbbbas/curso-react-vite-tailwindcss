@@ -57,8 +57,6 @@ const Home = () => {
     // Obtenemos la categoría sin el /
     const category = window.location.pathname.split('/').pop()
 
-    console.log('SearchByTitle: ', searchByTitle);
-
     useEffect(() => {
         // Limpia el searchByTitle cuando cambiamos de ruta
         setSearchByTitle(null)
