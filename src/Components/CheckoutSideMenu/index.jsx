@@ -17,7 +17,8 @@ const CheckoutSideMenu = () => {
         cartProducts,
         setCartProducts,
         counter,
-        setCounter
+        setCounter,
+        setSearchByTitle
     } = useContext(ShoppingCartContext)
 
     const handleDelete = (id) => {
@@ -38,6 +39,7 @@ const CheckoutSideMenu = () => {
         setOrder([...order, orderToAdd]) // Agregamos la orden al estado
         setCounter(0) // Reiniciamos el contador
         setCartProducts([]) // Limpiamos el carrito
+        setSearchByTitle(null)
     }
 
     return (
@@ -74,7 +76,7 @@ const CheckoutSideMenu = () => {
                     <span className="font-semibold text-xl">${totalPrice(cartProducts)}</span>
                 </p>
 
-                <Link to={'my-orders/last'}>
+                <Link to={'/my-orders/last'}>
                     <button
                         className="bg-black text-white w-full py-3 rounded-lg cursor-pointer"
                         onClick={() => handleCheckout()}
