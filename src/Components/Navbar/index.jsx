@@ -27,7 +27,7 @@ const Navbar = () => {
                 </li>
                 <li>
                     <NavLink
-                        to='/all'
+                        to='/'
                         className={activeItem}
                     >
                         All
