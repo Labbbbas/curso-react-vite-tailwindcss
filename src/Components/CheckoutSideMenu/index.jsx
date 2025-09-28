@@ -46,7 +46,7 @@ const CheckoutSideMenu = () => {
         <aside
             // La primera es otra forma de hacerlo
             // className={`${isProductDetailOpen ? 'flex' : 'hidden'} flex-col bg-white fixed right-0 border border-black rounded-lg top-[68px] w-[360px] h-[calc(100vh-68px)]`}
-            className='flex flex-col bg-white fixed right-0 border border-black rounded-lg top-[68px] w-[360px] h-[calc(100vh-68px)] overflow-y-auto'
+            className='flex flex-col bg-white fixed right-0 border border-black rounded-lg top-[75px] w-[360px] h-[calc(95vh-68px)]'
         >
             {/* La cabecera */}
             <div className='flex justify-between items-center px-6 py-4'>
@@ -57,7 +57,7 @@ const CheckoutSideMenu = () => {
             </div>
 
             {/* La lista de productos */}
-            <div className='px-6 flex-1'>
+            <div className='px-6 flex-1 overflow-y-auto'>
                 {cartProducts.map((product) => (
                     <OrderCard
                         key={product.id}

@@ -13,7 +13,7 @@ const ProductDetail = () => {
         <aside
             // La primera es otra forma de hacerlo
             // className={`${isProductDetailOpen ? 'flex' : 'hidden'} flex-col bg-white fixed right-0 border border-black rounded-lg top-[68px] w-[360px] h-[calc(100vh-68px)]`}
-            className='flex flex-col bg-white fixed right-0 border border-black rounded-lg top-[68px] w-[360px] h-[calc(100vh-68px)]'
+            className='flex flex-col bg-white fixed right-0 border border-black rounded-2xl top-[75px] w-[360px] h-[calc(95vh-68px)]'
         >
             {/* La cabecera */}
             <div className='flex justify-between items-center px-6 py-4'>
@@ -36,7 +36,7 @@ const ProductDetail = () => {
                 <p className='flex flex-col px-6 py-3'>
                     <span className='font-medium text-2xl mb-2 text-center'>${productToShow.price}</span>
                     <span className='font-medium text-lg mb-2 text-center'>{productToShow.title}</span>
-                    <span className='font-light text-md text-justify'>{productToShow.description}</span>
+                    <span className='font-light text-md text-justify pb-3'>{productToShow.description}</span>
                 </p>
             </div>
 
