@@ -59,18 +59,18 @@ const Navbar = () => {
                 </li>
                 <li>
                     <NavLink
-                        to='/toys'
+                        to='/shoes'
                         className={activeItem}
                     >
-                        Toys
+                        Shoes
                     </NavLink>
                 </li>
                 <li>
                     <NavLink
-                        to='/others'
+                        to='/miscellaneous'
                         className={activeItem}
                     >
-                        Others
+                        Miscellaneous
                     </NavLink>
                 </li>
             </ul>
@@ -104,10 +104,10 @@ const Navbar = () => {
                     </NavLink>
                 </li>
                 <li className='flex gap-0.5 items-center justify-center cursor-pointer'>
-                    <CiShoppingCart 
+                    <CiShoppingCart
                         className='text-xl'
-                        onClick={() => toggleCheckoutSideMenu()}    
-                    /> 
+                        onClick={() => toggleCheckoutSideMenu()}
+                    />
                     <div>{counter}</div>
                 </li>
             </ul>
