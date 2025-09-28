@@ -15,7 +15,8 @@ const Home = () => {
     } = useContext(ProductDetailContext)
 
     const {
-        isCheckoutSideMenuOpen
+        isCheckoutSideMenuOpen,
+        setIsCheckoutSideMenuOpen
     } = useContext(CheckoutSideMenuContext)
 
     const {
@@ -58,11 +59,14 @@ const Home = () => {
     const category = window.location.pathname.split('/').pop()
 
     useEffect(() => {
-        // Limpia el searchByTitle cuando cambiamos de ruta
+        // Cuando cambiamos de ruta...
+        // Limpia el searchByTitle 
         setSearchByTitle(null)
-
+        // Cierra el Product Detail 
         setIsProductDetailOpen(false)
-    }, [location.pathname, setSearchByTitle])
+        // Cierra el Checkout Side Menu 
+        setIsCheckoutSideMenuOpen(false)
+    }, [location.pathname, setSearchByTitle, setIsProductDetailOpen, setIsCheckoutSideMenuOpen])
 
     // Versión optimizada
     const renderView = () => {
