@@ -59,6 +59,9 @@ const ProductDetailProvider = ({ children }) => {
     // Estado para saber si el Product Detail está abierto o cerrado
     const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
 
+    // Para cerrar el Product Detail si se presiona dos veces seguidas
+    const [prevProductId, setPrevProductId] = useState(null)
+
     // Para abrir y cerrar el Product Detail
     const openProductDetail = () => setIsProductDetailOpen(true)
     const closeProductDetail = () => setIsProductDetailOpen(false)
@@ -73,7 +76,9 @@ const ProductDetailProvider = ({ children }) => {
             openProductDetail,
             closeProductDetail,
             productToShow,
-            setProductToShow
+            setProductToShow,
+            prevProductId,
+            setPrevProductId
         }}>
             {children}
         </ProductDetailContext.Provider>

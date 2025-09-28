@@ -16,8 +16,11 @@ const Card = ({ data }) => {
     // Contexto Detalles del Producto
     const {
         openProductDetail,
+        isProductDetailOpen,
         closeProductDetail,
         setProductToShow,
+        prevProductId,
+        setPrevProductId
     } = useContext(ProductDetailContext)
 
     // Contexto checkout (pago)
@@ -27,7 +30,17 @@ const Card = ({ data }) => {
     } = useContext(CheckoutSideMenuContext)
 
     const ShowProduct = (productDetail) => {
-        openProductDetail()
+
+        setPrevProductId(data.id)
+
+        // Para cerrar el Product Detail cuando demos clic dos veces sobre el mismo artículo
+        if (prevProductId === productDetail.id && isProductDetailOpen === true) {
+            closeProductDetail()
+        }
+        else {
+            openProductDetail()
+        }
+
         setProductToShow(productDetail)
         closeCheckoutSideMenu()
     }
