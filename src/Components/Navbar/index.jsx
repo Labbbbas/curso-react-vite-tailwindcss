@@ -103,12 +103,14 @@ const Navbar = () => {
                         Sign In
                     </NavLink>
                 </li>
-                <li className='flex gap-0.5 items-center justify-center cursor-pointer'>
+                <li 
+                    className='flex gap-0.5 items-center justify-center cursor-pointer'
+                    onClick={() => toggleCheckoutSideMenu()}
+                >
                     <CiShoppingCart
                         className='text-xl'
-                        onClick={() => toggleCheckoutSideMenu()}
                     />
-                    <div>{counter}</div>
+                    <div className='select-none'>{counter}</div>
                 </li>
             </ul>
         </nav>
