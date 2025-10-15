@@ -1,13 +1,58 @@
 import { RiCloseLargeFill } from "react-icons/ri";
 import { useContext } from "react";
 import { ProductDetailContext } from "../../Context";
+import { CheckoutSideMenuContext, ShoppingCartContext } from "../../Context";
 
-const ProductDetail = () => {
+const ProductDetail = ({ data }) => {
+
+    const {
+        openCheckoutSideMenu
+    } = useContext(CheckoutSideMenuContext)
 
     const {
         closeProductDetail,
         productToShow
     } = useContext(ProductDetailContext)
+
+    const {
+        cartProducts,
+        setCartProducts,
+        counter,
+        setCounter,
+    } = useContext(ShoppingCartContext)
+
+    const addProductToCart = (e, productToAdd) => {
+        e.stopPropagation() // Para que no abra el Product Detail cuando demos click en +
+        setCartProducts([...cartProducts, { ...productToAdd, quantity: 1 }])
+
+        setCounter(counter + 1)
+        openCheckoutSideMenu()
+        closeProductDetail()
+    }
+
+    const renderButton = (data) => {
+        const isInCart = cartProducts.filter(product => product.id === data.id).length > 0 // Devuelve true o false
+
+        if (isInCart) {
+            return (
+                <button
+                    className="bg-gray-500 text-white w-full py-3 rounded-lg cursor-not-allowed opacity-80"
+                >
+                    Already in your cart
+                </button>
+            )
+        }
+        else {
+            return (
+                <button
+                    className="bg-black text-white w-full py-3 rounded-lg cursor-pointer"
+                    onClick={(e) => addProductToCart(e, data)}
+                >
+                    Add Product
+                </button>
+            )
+        }
+    }
 
     return (
         <aside
@@ -23,7 +68,7 @@ const ProductDetail = () => {
                 </div>
             </div>
 
-            <div className='flex flex-col overflow-y-auto '>
+            <div className='flex flex-col flex-1 overflow-y-auto '>
                 {/* La imagen */}
                 <figure className='px-6'>
                     <img
@@ -38,8 +83,13 @@ const ProductDetail = () => {
                     <span className='font-medium text-lg mb-2 text-center'>{productToShow.title}</span>
                     <span className='font-light text-md text-justify pb-3'>{productToShow.description}</span>
                 </p>
+
             </div>
 
+            <div className='px-6 mb-4'>
+                {renderButton(data)}
+
+            </div>
 
         </aside >
     )
