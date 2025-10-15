@@ -9,7 +9,7 @@ const ShoppingCartProvider = ({ children }) => {
 
     // Estado para agregar productos al carrito
     const [cartProducts, setCartProducts] = useState([])
-
+    
     // Get products
     const [items, setItems] = useState(null)
 
