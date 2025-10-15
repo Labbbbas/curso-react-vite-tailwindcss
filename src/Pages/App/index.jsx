@@ -32,7 +32,7 @@ const App = () => {
     <ShoppingCartProvider>
       <ProductDetailProvider>
         <CheckoutSideMenuProvider>
-          <BrowserRouter>
+          <BrowserRouter basename='/curso-react-vite-tailwindcss'>
             <AppRoutes />
             <Navbar />
           </BrowserRouter>
