@@ -11,7 +11,8 @@ const Home = () => {
 
     const {
         isProductDetailOpen,
-        setIsProductDetailOpen
+        setIsProductDetailOpen,
+        productToShow
     } = useContext(ProductDetailContext)
 
     const {
@@ -89,7 +90,7 @@ const Home = () => {
                     <PiSmileySadThin className='size-10 mb-6' />
                     <p className='text-xl text-gray-600'>{
                         category
-                            ? "We don't have any prodcuts in this category"
+                            ? "We don't have any products in this category"
                             : "We couldn't find the product"
                     }</p>
                 </div>
@@ -99,7 +100,7 @@ const Home = () => {
 
     return (
         <Layout>
-            <p className='mb-6 font-medium'>
+            <p className='mb-6'>
                 {
                     category 
                         ? 'Explore ' + category.charAt(0).toUpperCase() + category.slice(1)
@@ -118,7 +119,7 @@ const Home = () => {
             <div className='grid gap-4 grid-cols-4 w-full max-w-screen-lg mb-10'>
                 {renderView()}
             </div>
-            {isProductDetailOpen && <ProductDetail />}
+            {isProductDetailOpen && <ProductDetail key={productToShow.id} data={productToShow}/>}
             {isCheckoutSideMenuOpen && <CheckoutSideMenu />}
         </Layout>
     );
