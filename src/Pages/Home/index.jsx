@@ -6,6 +6,7 @@ import { ProductDetail } from "../../Components/ProductDetail";
 import { ProductDetailContext, CheckoutSideMenuContext, ShoppingCartContext } from "../../Context";
 import { CheckoutSideMenu } from "../../Components/CheckoutSideMenu";
 import { PiSmileySadThin } from "react-icons/pi";
+import { useLocation, useParams } from 'react-router-dom';
 
 const Home = () => {
 
@@ -57,7 +58,9 @@ const Home = () => {
     // }
 
     // Obtenemos la categoría sin el /
-    const category = window.location.pathname.split('/').pop()
+    // const category = window.location.pathname.split('/').pop()
+    const { category } = useParams()
+    const location = useLocation()
 
     useEffect(() => {
         // Cuando cambiamos de ruta...
@@ -74,7 +77,7 @@ const Home = () => {
         const baseItems = searchByTitle?.length > 0 ? filteredItems : items
 
         const itemsToRender = category
-            ? baseItems?.filter(item => (item.category.name).toLowerCase() === category)
+            ? baseItems?.filter(item => (item.category.name).toLowerCase() === category.toLowerCase())
             : baseItems
 
         if (itemsToRender?.length > 0) {
@@ -119,7 +122,7 @@ const Home = () => {
             <div className='grid gap-4 grid-cols-4 w-full max-w-screen-lg mb-10'>
                 {renderView()}
             </div>
-            {isProductDetailOpen && <ProductDetail key={productToShow.id} data={productToShow}/>}
+            {isProductDetailOpen && productToShow && <ProductDetail key={productToShow.id} data={productToShow}/>}
             {isCheckoutSideMenuOpen && <CheckoutSideMenu />}
         </Layout>
     );

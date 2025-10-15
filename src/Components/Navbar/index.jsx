@@ -27,7 +27,7 @@ const Navbar = () => {
                 </li>
                 <li>
                     <NavLink
-                        to='/'
+                        to='/' end // Match exacto para que no quede activo en rutas hijas:
                         className={activeItem}
                     >
                         All
