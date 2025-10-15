@@ -21,7 +21,7 @@ const MyOrder = () => {
     return (
         <Layout>
             <div className='flex flex-col items-center pb-6'>
-                <div className='flex gap-6'>
+                <div className='flex gap-6 items-center'>
                     <Link to={'/my-orders'}>
                         <BsChevronLeft className='h-5 w-5 text-black cursor-pointer' />
 
@@ -30,7 +30,7 @@ const MyOrder = () => {
                 </div>
 
                 {/* La lista de mi orden */}
-                <div className='flex flex-col w-80 mt-5'>
+                <div className='flex flex-col w-80 mt-6'>
                     {order?.[index]?.products.map((product) => (
                         <OrderCard
                             key={product.id}
@@ -38,9 +38,16 @@ const MyOrder = () => {
                             title={product.title}
                             image={product.images}
                             price={product.price}
+                            quantity={product.quantity}
                         />
                     ))}
                 </div>
+
+                <div className="flex justify-end w-80 items-center text-base gap-1 pt-0">
+                    <span className="font-light">Total:</span>
+                    <span className="font-semibold">${order?.[index]?.totalPrice}</span>
+                </div>
+
             </div>
 
         </Layout>
