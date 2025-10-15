@@ -27,6 +27,28 @@ const CheckoutSideMenu = () => {
         setCounter(counter - 1)
     }
 
+    const handleIncrease = (id) => {
+        // Se utiliza prev antes del map, y no directamente el map, para que sea la versión 
+        // más actualizada del estado. Una buena práctica en React
+        setCartProducts(prev =>
+            prev.map(p =>
+                p.id === id // Si encontramos el id
+                    ? { ...p, quantity: p.quantity + 1 } // Incrementa en 1 la cantidad
+                    : p // Sino, se queda así, no se toca
+            )
+        )
+    }
+
+    const handleDecrease = (id) => {
+        setCartProducts(prev =>
+            prev.map(p =>
+                p.id === id
+                    ? { ...p, quantity: p.quantity - 1 }
+                    : p
+            )
+        )
+    }
+
     const handleCheckout = () => {
         // Creamos un objeto con la orden
         const orderToAdd = {
@@ -66,11 +88,14 @@ const CheckoutSideMenu = () => {
                         image={product.images}
                         price={product.price}
                         handleDelete={handleDelete}
+                        quantity={product.quantity ?? 1} // Por default es 1
+                        handleIncrease={handleIncrease} // Para reenderizar el icono +
+                        handleDecrease={handleDecrease} // Para reenderizar el icono -
                     />
                 ))}
             </div>
 
-            <div className="px-6 mb-6">
+            <div className="px-6 mb-4">
                 <p className="flex justify-between items-center mb-3">
                     <span className="font-medium">Total:</span>
                     <span className="font-semibold text-xl">${totalPrice(cartProducts)}</span>
@@ -80,11 +105,11 @@ const CheckoutSideMenu = () => {
                     <button
                         className="bg-black text-white w-full py-3 rounded-lg cursor-pointer"
                         onClick={() => handleCheckout()}
-                    > 
+                    >
                         Checkout
                     </button>
                 </Link>
-        </div>
+            </div>
 
         </aside >
     )
