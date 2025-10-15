@@ -1,5 +1,5 @@
-const totalPrice = (products) => {
-    return products.reduce((acc, product) => acc + product.price, 0)
+const totalPrice = (products) => {      
+    return products.reduce((acc, product) => acc + (product.price * product.quantity), 0)
 }
 
 export { totalPrice }
