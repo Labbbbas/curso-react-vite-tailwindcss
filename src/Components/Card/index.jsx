@@ -47,7 +47,8 @@ const Card = ({ data }) => {
 
     const addProductToCart = (e, productToAdd) => {
         e.stopPropagation() // Para que no abra el Product Detail cuando demos click en +
-        setCartProducts([...cartProducts, productToAdd])
+        setCartProducts([...cartProducts, {...productToAdd, quantity: 1}])
+        
         setCounter(counter + 1)
         openCheckoutSideMenu()
         closeProductDetail()
