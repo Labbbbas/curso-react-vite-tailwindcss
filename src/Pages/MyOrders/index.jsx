@@ -9,7 +9,7 @@ const MyOrders = () => {
     
     return (
         <Layout>
-            <p className='mb-6 font-medium'>My Orders</p>
+            <p className='mb-6'>My Orders</p>
             {
                 context.order.map((order, index) => (
 
