@@ -27,12 +27,15 @@ const AppRoutes = () => {
 }
 
 const App = () => {
+  // React Router espera basename SIN / final
+  // Lo recortamos por si viene con /
+  const base = import.meta.env.BASE_URL.replace(/\/$/, '')
 
   return (
     <ShoppingCartProvider>
       <ProductDetailProvider>
         <CheckoutSideMenuProvider>
-          <BrowserRouter basename='/curso-react-vite-tailwindcss'>
+          <BrowserRouter basename={base}>
             <AppRoutes />
             <Navbar />
           </BrowserRouter>
